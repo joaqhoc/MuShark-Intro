@@ -1,10 +1,5 @@
 ﻿<?php
-require('web/config.php');
-require('web/engine/core.php');
-require('web/engine/global_config.php');
-require('web/engine/custom_variables.php');
-require('web/engine/global_cms.php');
-require('web/engine/global_functions.php');
+include ('configuracion.php');
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 8 ]><html class="no-js ie ie7" lang="en"> <![endif]-->
@@ -12,14 +7,14 @@ require('web/engine/global_functions.php');
 <!--[if (gte IE 8)|!(IE)]><!--><html class="no-js" lang="en"> <!--<![endif]-->
 <head>
 
-   <!--- Basic Page Needs
+   <!--- Meta datos
    ================================================== -->
    <meta charset="utf-8">
-	<title>Mu Shark | Season 4</title>
+	<title><?php echo "$Titulo"; ?></title>
 	<meta name="description" content="Mu Online Season 4">
 	<meta name="author" content="Soporte">
 
-   <!-- Mobile Specific Metas
+   <!-- Meta datos Movil
    ================================================== -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -40,7 +35,7 @@ require('web/engine/global_functions.php');
 
    <!-- Favicons
 	================================================== -->
-	<link rel="shortcut icon" href="favicon.ico" >
+	<link rel="shortcut icon" href="images/favicon.ico" >
 
 </head>
 
@@ -52,7 +47,7 @@ require('web/engine/global_functions.php');
       </div>
    </div>
 
-   <!-- Intro Section
+   <!-- Seccion Intro
    ================================================== -->
    <section id="intro">
 
@@ -70,77 +65,76 @@ require('web/engine/global_functions.php');
 
 		      <ul id="nav" class="nav">
 		         <li class="current"><a class="smoothscroll" href="#home">Inicio</a></li>
-                 <li class="current"><a class="smoothscroll" href="http://muexpertus.muservidor.com/web/index.php?page_id=descarga">Descargar</a></li>
-                 <li class="current"><a class="smoothscroll" href="#home">Grupo Facebook</a></li>
+                 <li class="current"><a class="smoothscroll" href="#">Descargar</a></li>
+                 <li class="current"><a class="smoothscroll" href="<?php echo "$UrlGrupoServer"; ?>">Grupo Facebook</a></li>
 		      </ul> <!-- end #nav -->
 
 		   </nav> <!-- end #nav-wrap --> 	        
 
-   	</header> <!-- Header End -->   	
+   	</header> <!-- Final Cabecera -->   	
 
    	<div  id="main" class="row">
 
 	   	<div class="twelve columns">
 	   			
-	   		<h1>Mu Shark | <font color="red">S</font>eason 4</h1>
+	   		<h1><?php echo "$NombreServer"; ?> | <?php echo "$ServerVer"; ?></h1>
 
-	   		<p>Sean bienvenidos a nuestro servidor Fast!
+	   		<p><?php echo "$AnuncioServer"; ?>
                 <br>
                 Administradores:
                 <br>
-                [<a href="#">KANON</a> | <a href="#">Soporte</a>]<br></p>
+                [<a href="#"><?php echo "$AdminServer1"; ?></a> | <a href="#"><?php echo "$AdminServer2"; ?></a>]<br></p>
 
 	   		<h5>Información del Servidor</h5>
-            Experiencia: x9999<br>
-            Drop: %80<br>
-            CastleSiege: 17/09/2016<br>
+            Experiencia: <?php echo "$ServerExp"; ?><br>
+            Drop: <?php echo "$ServerDrop"; ?><br>
+            Level Reset: <?php echo "$ResetLvlServer"; ?><br>
+            Bug Bless: <?php echo "$BugBlessServer"; ?><br>
+            Max Stats: <?php echo "$ServerMaxStat"; ?><br>
+	    <br>
             				
 
 	         <div id="mc_embed_signup">
 			<div id="fb-root"></div>
 <?PHP
-if (eregi("web/status/servidor.php", $_SERVER['SCRIPT_NAME'])) { die ("Access Denied"); }
-require 'web/engine/global_config.php';
 
-$onlineoffline = "127.0.0.1";
-if ($check=@fsockopen($onlineoffline,55919,$ERROR_NO,$ERROR_STR,(float)0.5)) 
+if ($check=@fsockopen($IPSERVER,$PORTSERVER,$ERROR_NO,$ERROR_STR,(float)0.5)) 
    { 
    fclose($check); 
-   echo '<font size=3 color=#c9c9c9>Castle Siege:</font> <img src="images/on.png" alt="Online">'; 
+   echo '<font size=3 color=#c9c9c9>GameServer:</font> <img src="images/on.png" alt="Online">'; 
    }
 else 
    { 
-   echo '<font size=3 color=#c9c9c9>Castle Siege:</font> <img src="images/off.png" alt="Offline">'; 
+   echo '<font size=3 color=#c9c9c9>GameServer:</font> <img src="images/off.png" alt="Offline">'; 
    } 
 ?>
 <br>
 <?PHP
-$onlineoffline2 = "127.0.0.1";
-if ($check=@fsockopen($onlineoffline,55901,$ERROR_NO,$ERROR_STR,(float)0.5)) 
+if ($check=@fsockopen($IPCSERVER,$PORTCSERVER,$ERROR_NO,$ERROR_STR,(float)0.5)) 
    { 
    fclose($check); 
-   echo '<font size=3 color=#c9c9c9>Server:</font> <img src="images/on.png" alt="Online">'; 
+   echo '<font size=3 color=#c9c9c9>GameServer CS:</font> <img src="images/on.png" alt="Online">'; 
    }
 else 
    { 
-   echo '<font size=3 color=#c9c9c9>Server:</font> <img src="images/off.png" alt="Offline">'; 
+   echo '<font size=3 color=#c9c9c9>GameServer CS:</font> <img src="images/off.png" alt="Offline">'; 
    } 
 ?>
             </div>
-
+<br />
 	         <ul class="social">
-			<a href="web/index.php">Entrar al Servidor!</a></p><br>
+			<a href="web/index.php"><img src="images/entrar.png" alt="Online"></img></a></p><br>
 
 
             </ul>
 
          </div> 
 
-      </div> <!-- main end -->    	
+      </div> <!-- Fin Menu -->    	
 
-   </section> <!-- end intro section -->
+   </section> <!-- Fin sección Intro -->
 
-   <!-- footer
+   <!-- Pie de pagina
    ================================================== -->
    <footer>
 
@@ -149,7 +143,7 @@ else
          <div class="twelve columns">            
 
             <ul class="copyright">
-               <li>&copy; Copyright 2016 Soporte</li>
+               <li><?php echo "$CopyRight"; ?></li>
                <li>Design by <a title="SkarY" href="https://www.facebook.com/joaquincentu">Soporte</a></li>          
             </ul>
 
@@ -159,7 +153,7 @@ else
 
       <div id="go-top"><a class="smoothscroll" title="Ir Arriba" href="#intro"><i class="icon-up-open"></i></a></div>
 
-   </footer> <!-- Footer End-->   
+   </footer> <!-- Fin Pie de pagina-->   
 
    <!-- Java Script
    ================================================== -->
